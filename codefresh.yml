@@ -1,0 +1,16 @@
+version: '1.0'
+steps:
+  unit_test_step:
+    title: "Executing unit tests..."
+    image: node:7.10-alpine
+    environment:
+        - COVERALLS_SERVICE_NAME=codefresh-io
+        - COVERALLS_REPO_TOKEN=${{COVERALLS_TOKEN}}
+    working_directory: ${{main_clone}}
+    commands:
+        - yarn install
+        - yarn lint
+        - yarn test:coverage
+        - yarn coveralls
+        - yarn clean
+

@@ -10,6 +10,7 @@ steps:
     commands:
         - yarn install
         - yarn lint
+        - yarn depcheck
         - yarn test:coverage
         - yarn coveralls
         - yarn clean

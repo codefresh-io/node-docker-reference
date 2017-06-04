@@ -11,7 +11,7 @@
     "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/**/*.spec.js",
     "lint": "eslint --rule 'no-trailing-spaces: [\"warn\", { \"skipBlankLines\": false }]' \"./src/**/*.js\"",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "depcheck": "depcheck",
+    "depcheck": "depcheck --ignore rimraf",
     "clean": "rimraf ./coverage"
   },
   "devDependencies": {
@@ -26,8 +26,6 @@
     "eslint-plugin-react": "^7.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
-    "rimraf": "^2.6.1",
-    "sinon": "^2.3.2",
-    "sinon-chai": "^2.10.0"
+    "rimraf": "^2.6.1"
   }
 }

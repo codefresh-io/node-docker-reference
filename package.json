@@ -1,6 +1,6 @@
 {
   "name": "@codefresh-io/docker-reference",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A node.js pacakge to parse docker image reference",
   "main": "index.js",
   "repository": "https://github.com/codefresh-io/node-docker-reference",
@@ -11,7 +11,7 @@
     "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/**/*.spec.js",
     "lint": "eslint --rule 'no-trailing-spaces: [\"warn\", { \"skipBlankLines\": false }]' \"./src/**/*.js\"",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "depcheck": "depcheck --ignore rimraf",
+    "depcheck": "depcheck --ignores rimraf",
     "clean": "rimraf ./coverage",
     "publish": "publish"
   },

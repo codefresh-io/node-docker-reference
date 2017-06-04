@@ -1,6 +1,6 @@
 {
   "name": "@codefresh-io/docker-reference",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A node.js pacakge to parse docker image reference",
   "main": "index.js",
   "repository": "https://github.com/codefresh-io/node-docker-reference",
@@ -13,7 +13,7 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "depcheck": "depcheck --ignore rimraf",
     "clean": "rimraf ./coverage",
-    "publish:auto": "publish"
+    "publish": "publish"
   },
   "devDependencies": {
     "chai": "^3.5.0",

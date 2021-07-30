@@ -1,6 +1,6 @@
 {
   "name": "@codefresh-io/docker-reference",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A node.js pacakge to parse docker image reference",
   "main": "index.js",
   "repository": "https://github.com/codefresh-io/node-docker-reference",
@@ -29,5 +29,8 @@
     "mocha": "^3.4.2",
     "publish": "^0.6.0",
     "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "re2": "^1.16.0"
   }
 }

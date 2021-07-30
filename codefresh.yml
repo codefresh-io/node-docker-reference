@@ -2,7 +2,7 @@ version: '1.0'
 steps:
   unit_test_step:
     title: "Executing unit tests..."
-    image: node:10.12.0-alpine
+    image: node:10.13.0-alpine
     environment:
         - COVERALLS_SERVICE_NAME=codefresh-io
         - COVERALLS_REPO_TOKEN=${{COVERALLS_TOKEN}}
@@ -16,7 +16,7 @@ steps:
       - yarn clean
   publish_package:
     title: "Publishing package to npm..."
-    image: node:10.12.0-alpine
+    image: node:10.13.0-alpine
     environment:
       - NPM_USERNAME=${{NPM_TOKEN}}
     commands:

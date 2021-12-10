@@ -12,7 +12,7 @@
     "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/**/*.spec.js",
     "lint": "eslint --rule 'no-trailing-spaces: [\"warn\", { \"skipBlankLines\": false }]' \"./src/**/*.js\"",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "depcheck": "depcheck --ignores rimraf",
+    "depcheck": "depcheck --ignores='rimraf,@types/*'",
     "clean": "rimraf ./coverage",
     "build:ts-definitions": "tsc",
     "publish": "yarn build:definitions && publish"

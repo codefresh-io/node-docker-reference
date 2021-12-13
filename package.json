@@ -15,7 +15,7 @@
     "depcheck": "depcheck --ignores='rimraf,@types/*'",
     "clean": "rimraf ./coverage",
     "build:ts-definitions": "tsc",
-    "publish": "yarn build:definitions && publish"
+    "publish": "publish"
   },
   "devDependencies": {
     "@types/node": "^16.11.12",

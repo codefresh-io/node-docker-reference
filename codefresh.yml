@@ -20,6 +20,7 @@ steps:
     environment:
       - NPM_USERNAME=${{NPM_TOKEN}}
     commands:
+      - yarn build:ts-definitions
       - echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > ~/.npmrc
       - npm run publish
     when:

@@ -1,8 +1,9 @@
 {
   "name": "@codefresh-io/docker-reference",
-  "version": "0.0.8",
-  "description": "A node.js pacakge to parse docker image reference",
+  "version": "0.0.9",
+  "description": "A node.js package to parse docker image reference",
   "main": "index.js",
+  "types": "./dist/index.d.ts",
   "repository": "https://github.com/codefresh-io/node-docker-reference",
   "author": "Roy Shmueli <roy@codefresh.io>",
   "license": "MIT",
@@ -11,11 +12,13 @@
     "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/**/*.spec.js",
     "lint": "eslint --rule 'no-trailing-spaces: [\"warn\", { \"skipBlankLines\": false }]' \"./src/**/*.js\"",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "depcheck": "depcheck --ignores rimraf",
+    "depcheck": "depcheck --ignores='rimraf,@types/*'",
     "clean": "rimraf ./coverage",
-    "publish": "publish"
+    "build:ts-definitions": "tsc",
+    "publish": "yarn build:definitions && publish"
   },
   "devDependencies": {
+    "@types/node": "^16.11.12",
     "chai": "^3.5.0",
     "coveralls": "^2.13.1",
     "depcheck": "^0.6.7",
@@ -28,7 +31,8 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
     "publish": "^0.6.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "typescript": "^4.5.3"
   },
   "dependencies": {
     "re2": "^1.16.0"

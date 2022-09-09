@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/docker-reference",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A node.js package to parse docker image reference",
   "main": "index.js",
   "types": "./dist/index.d.ts",

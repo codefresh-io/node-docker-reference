@@ -4,8 +4,8 @@
   "description": "A node.js package to parse docker image reference",
   "main": "index.js",
   "types": "./dist/index.d.ts",
-  "repository": "https://github.com/codefresh-io/node-docker-reference",
-  "author": "Roy Shmueli <roy@codefresh.io>",
+  "repository": "https://github.com/swimlane/node-docker-reference",
+  "author": "developers <developers@swimlane.com>",
   "license": "MIT",
   "scripts": {
     "test": "mocha tests/**/*.spec.js",

@@ -6,7 +6,7 @@ A small package to parse and work with docker images references.
 
 To use docker-reference you should start with creating a `Reference` instance:
 ``` js
-const { Reference } = require('@codefresh-io/docker-reference');
+const { Reference } = require('@swimlane/docker-reference');
 
 const imageReference = new Reference({
     domain: 'r.cfcr.io',
@@ -23,7 +23,7 @@ console.log(imageReference.toString()); // r.cfcr.io/codefresh/demochat:master@s
 
 You can also use parser to create your `Reference` instance:
 ``` js
-const { parseQualifiedName } = require('@codefresh-io/docker-reference');
+const { parseQualifiedName } = require('@swimlane/docker-reference');
 
 const imageReference = parseQualifiedName('r.cfcr.io/codefresh/demochat:master@sha256:58fe87ff24d5a3ac35c887dcef82eb619565987c1083282f876c7c2657a5f94e');
 

@@ -1,7 +1,3 @@
-// Codefresh Code Style - eslint ruleset
-// Based on AirBnB.
-//
-// More details: https://codefresh-io.atlassian.net/wiki/display/COD/Code+Style+Guide
 {
 
   "extends": "airbnb",

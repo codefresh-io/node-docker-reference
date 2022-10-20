@@ -53,7 +53,7 @@ jobs:
         run: npm run lint
 
       - name: build
-        run: npm run build
+        run: npm run build:ts-definitions
       
       - name: test
         run: npm run test

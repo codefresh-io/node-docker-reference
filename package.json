@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/docker-reference",
-  "version": "0.0.16",
+  "version": "1.0.0",
   "description": "A node.js package to parse docker image reference",
   "main": "index.js",
   "types": "./dist/index.d.ts",
@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "nifo": "rimraf node_modules && npm run bootstrap",
-    "bootstrap": "npm ci && npm run prepare",    
+    "bootstrap": "npm ci && npm run prepare",
     "prepare": "husky install",
     "test": "mocha tests/**/*.spec.js",
     "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/**/*.spec.js",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",    
+    "@commitlint/config-conventional": "17.0.3",
     "@types/node": "16.11.12",
     "chai": "3.5.0",
     "coveralls": "2.13.1",

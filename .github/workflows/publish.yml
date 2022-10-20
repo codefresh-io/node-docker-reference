@@ -1,6 +1,12 @@
 name: publish
 on:
   workflow_dispatch:
+    inputs:
+      force:      
+        description: Used to force a publish
+        required: true
+        type: boolean
+        default: false
   push:
     branches:
       - main
@@ -49,7 +55,7 @@ jobs:
         run: npm run test:coverage
 
       - name: publish
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created || inputs.force }}
         run: |
           npm run publish
         env:

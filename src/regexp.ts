@@ -1,48 +1,34 @@
-'use strict';
-
 /**
  * expression defines a full expression, where each regular expression must follow the previous.
  */
-function expression(...regexps) {
-    return new RegExp(regexps
-        .map(re => re.source)
-        .join(''));
-}
+const expression = (...regexps: RegExp[]) => new RegExp(regexps
+    .map(re => re.source)
+    .join(''));
 
 /**
  * group wraps the regexp in a non-capturing group.
  */
-function group(...regexps) {
-    return new RegExp(`(?:${expression(...regexps).source})`);
-}
+const group = (...regexps: RegExp[]) => new RegExp(`(?:${expression(...regexps).source})`);
 
 /**
  * repeated wraps the regexp in a non-capturing group to get one or more matches.
  */
-function optional(...regexps) {
-    return new RegExp(`${group(...regexps).source}?`);
-}
+const optional = (...regexps: RegExp[]) => new RegExp(`${group(...regexps).source}?`);
 
 /**
  * repeated wraps the regexp in a non-capturing group to get one or more matches.
  */
-function repeated(...regexps) {
-    return new RegExp(`${group(...regexps).source}+`);
-}
+const repeated = (...regexps: RegExp[]) => new RegExp(`${group(...regexps).source}+`);
 
 /**
  * anchored anchors the regular expression by adding start and end delimiters.
  */
-function anchored(...regexps) {
-    return new RegExp(`^${expression(...regexps).source}$`);
-}
+const anchored = (...regexps: RegExp[]) => new RegExp(`^${expression(...regexps).source}$`);
 
 /**
  * capture wraps the expression in a capturing group.
  */
-function capture(...regexps) {
-    return new RegExp(`(${expression(...regexps).source})`);
-}
+const capture = (...regexps: RegExp[]) => new RegExp(`(${expression(...regexps).source})`);
 
 const alphaNumericRegexp = /[a-z0-9]+/;
 const separatorRegexp    = /(?:[._]|__|[-]*)/;
@@ -86,10 +72,9 @@ const referenceRegexp = anchored(
 const identifierRegexp = /[a-f0-9]{64}/;
 
 const anchoredIdentifierRegexp = anchored(identifierRegexp);
-
-Object.assign(exports, {
+export {
     referenceRegexp,
     anchoredNameRegexp,
     anchoredDigestRegexp,
     anchoredIdentifierRegexp
-});
+}

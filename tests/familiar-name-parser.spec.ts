@@ -1,11 +1,5 @@
-'use strict';
-
 /* eslint-env mocha */
-
-const chai         = require('chai');
-const { parseFamiliarName } = require('../lib/parsers');
-
-const expect = chai.expect;
+import {parseFamiliarName} from '../src';
 
 describe('Familiar name parser', () => {
 
@@ -71,40 +65,40 @@ describe('Familiar name parser', () => {
     describe('should parse invalid names without errors:', () => {
 
         it(`Invalid name #1`, () => {
-            expect(() => parseFamiliarName('https://github.com/docker/docker')).to.throw();
+            expect(() => parseFamiliarName('https://github.com/docker/docker')).toThrow();
         });
 
         it(`Invalid name #2`, () => {
-            expect(() => parseFamiliarName('docker/Docker')).to.throw();
+            expect(() => parseFamiliarName('docker/Docker')).toThrow();
         });
 
         it(`Invalid name #3`, () => {
-            expect(() => parseFamiliarName('-docker')).to.throw();
+            expect(() => parseFamiliarName('-docker')).toThrow();
         });
 
         it(`Invalid name #4`, () => {
-            expect(() => parseFamiliarName('-docker/docker')).to.throw();
+            expect(() => parseFamiliarName('-docker/docker')).toThrow();
         });
 
         it(`Invalid name #5`, () => {
-            expect(() => parseFamiliarName('-docker.io/docker/docker')).to.throw();
+            expect(() => parseFamiliarName('-docker.io/docker/docker')).toThrow();
         });
 
         it(`Invalid name #6`, () => {
-            expect(() => parseFamiliarName('docker///docker')).to.throw();
+            expect(() => parseFamiliarName('docker///docker')).toThrow();
         });
 
         it(`Invalid name #7`, () => {
-            expect(() => parseFamiliarName('docker.io/docker/Docker')).to.throw();
+            expect(() => parseFamiliarName('docker.io/docker/Docker')).toThrow();
         });
 
         it(`Invalid name #8`, () => {
-            expect(() => parseFamiliarName('docker.io/docker///docker')).to.throw();
+            expect(() => parseFamiliarName('docker.io/docker///docker')).toThrow();
         });
 
         it(`Invalid name #9`, () => {
             expect(() => parseFamiliarName(
-                '1a3f5e7d9c1b3a5f7e9d1c3b5a7f9e1d3c5b7a9f1e3d5d7c9b1a3f5e7d9c1b3a')).to.throw();
+                '1a3f5e7d9c1b3a5f7e9d1c3b5a7f9e1d3c5b7a9f1e3d5d7c9b1a3f5e7d9c1b3a')).toThrow();
         });
 
     });

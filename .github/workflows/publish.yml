@@ -2,7 +2,7 @@ name: publish
 on:
   workflow_dispatch:
     inputs:
-      force:      
+      force:
         description: Used to force a publish
         required: true
         type: boolean
@@ -46,18 +46,15 @@ jobs:
         run: npm run lint
 
       - name: build
-        run: npm run build:ts-definitions
-      
+        run: npm run build
+
       - name: test
         run: npm run test
-      
-      - name: coverage
-        run: npm run test:coverage
 
       - name: publish
         if: ${{ steps.release.outputs.release_created || inputs.force }}
         run: |
-          npm run publish
+          npm publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUSH_TOKEN }}

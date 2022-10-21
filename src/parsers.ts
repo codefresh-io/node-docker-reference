@@ -1,21 +1,7 @@
-"use strict";
+import {anchoredIdentifierRegexp, anchoredNameRegexp, referenceRegexp} from './regexp';
+import {isDigest, validateDigest} from './digest';
+import {Reference, ReferenceOptions, ReferenceType} from './reference';
 
-let RE2;
-try {
-  RE2 = require("re2");
-  // Test if native is working
-  new RE2(".*").exec("test");  
-} catch (err) {  
-  RE2 = RegExp;
-}
-
-const {
-  referenceRegexp,
-  anchoredNameRegexp,
-  anchoredIdentifierRegexp,
-} = require("./regexp");
-const { validateDigest, isDigest } = require("./digest");
-const { Reference } = require("./reference");
 
 const NAME_MAX_LENGTH = 255;
 
@@ -53,7 +39,7 @@ const DEFAULT_DOMAIN = "docker.io";
 const LEGACY_DEFAULT_DOMAIN = "index.docker.io";
 const OFFICIAL_REPOSITORY_NAME = "library";
 
-function _parseQualifiedName(regexp, name) {
+function _parseQualifiedName(regexp: RegExp, name: string) {
   const matches = regexp.exec(name);
 
   if (!matches) {
@@ -72,7 +58,7 @@ function _parseQualifiedName(regexp, name) {
     throw new NameTooLongError();
   }
 
-  let reference;
+  let reference: ReferenceOptions;
 
   const nameMatch = anchoredNameRegexp.exec(matches[1]);
   if (nameMatch && nameMatch.length === 3) {
@@ -87,7 +73,7 @@ function _parseQualifiedName(regexp, name) {
     };
   }
 
-  reference.tag = matches[2];
+  reference.tag = matches[2] as ReferenceType;
 
   if (matches[3]) {
     validateDigest(matches[3]);
@@ -97,15 +83,16 @@ function _parseQualifiedName(regexp, name) {
   return new Reference(reference);
 }
 
-exports.parseQualifiedNameOptimized = (name) => {
-  return _parseQualifiedName(new RE2(referenceRegexp), name);
+// noinspection JSUnusedGlobalSymbols
+const parseQualifiedNameOptimized = (name: string) => {
+  return _parseQualifiedName(new RegExp(referenceRegexp), name);
 };
 
-exports.parseQualifiedName = (name) => {
+const parseQualifiedName = (name: string) => {
   return _parseQualifiedName(referenceRegexp, name);
 };
 
-function splitDockerDomain(name) {
+function splitDockerDomain(name: string) {
   let domain;
   let reminder;
 
@@ -136,7 +123,7 @@ function splitDockerDomain(name) {
   return [domain, reminder];
 }
 
-exports.parseFamiliarName = (name, parseQualifiedNameFunc) => {
+const parseFamiliarName = (name: string, parseQualifiedNameFunc?: (name: string)=> string) => {
   if (anchoredIdentifierRegexp.test(name)) {
     throw new TypeError(
       `invalid repository name (${name}),` +
@@ -162,15 +149,16 @@ exports.parseFamiliarName = (name, parseQualifiedNameFunc) => {
 
   if (parseQualifiedNameFunc) {
     // ability to define custom park func , we have performance
-    // issue with old one and we need a way to override
+    // issue with old one, and we need a way to override
     // it for prevent use js native regexp
     return parseQualifiedNameFunc(`${domain}/${remainder}`);
   }
 
-  return exports.parseQualifiedName(`${domain}/${remainder}`);
+  return parseQualifiedName(`${domain}/${remainder}`);
 };
 
-exports.parseAll = (name) => {
+// noinspection JSUnusedGlobalSymbols
+const parseAll = (name: string) => {
   if (anchoredIdentifierRegexp.test(name)) {
     return new Reference({ digest: `sha256:${name}` });
   }
@@ -179,5 +167,13 @@ exports.parseAll = (name) => {
     return new Reference({ digest: name });
   }
 
-  return exports.parseFamiliarName(name);
+  return parseFamiliarName(name);
 };
+
+
+export {
+  parseQualifiedNameOptimized,
+  parseQualifiedName,
+  parseFamiliarName,
+  parseAll
+}

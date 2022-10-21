@@ -1,62 +1,15 @@
 {
-
-  "extends": "airbnb",
+  "root": true,
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "script",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "project": ["./tsconfig.json"]
   },
-
-  "plugins": [
-    "mocha"
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict",
+    "prettier"
   ],
-
-  "rules": {
-    "indent": [
-      "error",
-      4,
-      {
-        "SwitchCase": 1,
-        "VariableDeclarator": 1
-      }
-    ],
-    "func-names": [
-      "error",
-      "never"
-    ],
-    "quotes": [
-      "error",
-      "single",
-      {
-        "allowTemplateLiterals": true
-      }
-    ],
-    "no-trailing-spaces": "off",
-    "no-underscore-dangle": "off",
-    "no-param-reassign": "off",
-    "no-else-return": "off",
-    "arrow-body-style": "off",
-    "strict": [
-      "error",
-      "global"
-    ],
-    "no-multi-spaces": "off",
-    "padded-blocks": "off",
-    "import/no-extraneous-dependencies": [
-      2,
-      {
-        "devDependencies": true
-      }
-    ],
-    "guard-for-in": "error",
-    "no-console": "off",
-    "comma-dangle": ["error", "only-multiline"],
-    "quote-props": ["error", "consistent"],
-    "class-methods-use-this": "off",
-    "no-use-before-define": ["error", { "functions": false, "classes": true }],
-    "no-restricted-syntax": ["error", "WithStatement", "ForInStatement", "LabeledStatement"],
-    "mocha/no-exclusive-tests": "warn"
-  }
+  "ignorePatterns": ["**/*.js", "tests/**/*.ts", "**/*.d.ts"]
 }

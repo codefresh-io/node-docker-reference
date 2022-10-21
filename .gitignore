@@ -67,4 +67,5 @@ typings/
 #Dist folders
 dist/
 
+lib/
 # End of https://www.gitignore.io/api/node

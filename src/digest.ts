@@ -1,6 +1,4 @@
-'use strict';
-
-const { anchoredDigestRegexp } = require('./regexp');
+import {anchoredDigestRegexp} from './regexp';
 
 class InvalidDigestFormatError extends Error {
     constructor() {
@@ -23,13 +21,16 @@ class InvalidDigestLengthError extends Error {
     }
 }
 
-const algorithmsSizes = {
+const algorithmsSizes  ={
     sha256: 32,
     sha384: 48,
     sha512: 64,
-};
+}
 
-function checkDigest(digest, handleError) {
+type AlgorithmsSizes = keyof typeof algorithmsSizes
+type ErrorHandler = <TError extends Error>(t: new () => TError) => void
+
+function checkDigest(digest: string, handleError: ErrorHandler) {
     const indexOfColon = digest.indexOf(':');
     if (indexOfColon < 0 ||
         indexOfColon + 1 === digest.length ||
@@ -37,8 +38,9 @@ function checkDigest(digest, handleError) {
         return handleError(InvalidDigestFormatError);
     }
 
-    const algorithm = digest.substring(0, indexOfColon);
-    if (!algorithmsSizes[algorithm]) {
+    const algorithm = digest.substring(0, indexOfColon) as AlgorithmsSizes;
+
+    if (!Object.hasOwnProperty.call(algorithmsSizes, algorithm)) {
         return handleError(UnsupportedAlgorithmError);
     }
 
@@ -49,12 +51,18 @@ function checkDigest(digest, handleError) {
     return true;
 }
 
-exports.validateDigest = (digest) => {
+const validateDigest = (digest: string) => {
     checkDigest(digest, (ErrorType) => {
+        // eslint-disable-next-line @typescript-eslint/no-throw-literal
         throw new ErrorType();
     });
 };
 
-exports.isDigest = (digest) => {
+const isDigest = (digest: string) => {
     return checkDigest(digest, () => false);
 };
+
+export {
+    validateDigest,
+    isDigest
+}

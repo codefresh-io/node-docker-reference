@@ -1,7 +1,10 @@
-import {anchoredIdentifierRegexp, anchoredNameRegexp, referenceRegexp} from './regexp';
-import {isDigest, validateDigest} from './digest';
-import {Reference, ReferenceOptions, ReferenceType} from './reference';
-
+import {
+  anchoredIdentifierRegexp,
+  anchoredNameRegexp,
+  referenceRegexp,
+} from "./regexp";
+import { isDigest, validateDigest } from "./digest";
+import { Reference, ReferenceOptions, ReferenceType } from "./reference";
 
 const NAME_MAX_LENGTH = 255;
 
@@ -123,7 +126,10 @@ function splitDockerDomain(name: string) {
   return [domain, reminder];
 }
 
-const parseFamiliarName = (name: string, parseQualifiedNameFunc?: (name: string)=> string) => {
+const parseFamiliarName = (
+  name: string,
+  parseQualifiedNameFunc?: (name: string) => Reference
+) => {
   if (anchoredIdentifierRegexp.test(name)) {
     throw new TypeError(
       `invalid repository name (${name}),` +
@@ -170,10 +176,9 @@ const parseAll = (name: string) => {
   return parseFamiliarName(name);
 };
 
-
 export {
   parseQualifiedNameOptimized,
   parseQualifiedName,
   parseFamiliarName,
-  parseAll
-}
+  parseAll,
+};

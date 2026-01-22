@@ -21,7 +21,7 @@
     "@types/node": "^16.11.12",
     "chai": "^3.5.0",
     "coveralls": "^2.13.1",
-    "depcheck": "^0.6.7",
+    "depcheck": "^1.4.7",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",

@@ -14,6 +14,7 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "depcheck": "depcheck --ignores='rimraf,@types/*'",
     "clean": "rimraf ./coverage",
+    "build": "tsc",
     "build:ts-definitions": "tsc"
   },
   "devDependencies": {
